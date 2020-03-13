@@ -12,7 +12,12 @@
 #include <ctype.h>
 
 int main(int argc, char** argv) {
-  #pragma region check argument error
+  //check Argument error
+  if(argc != 5) //5 = program + 4 argumen lain
+  {
+    printf("salah woi kurang lol\n");
+    return 0;
+  }
   for (int i = 0; i < 3; i++)
   {
     //check alpha?
@@ -41,16 +46,8 @@ int main(int argc, char** argv) {
     {
       printf("arg ke %d salah range\n", i+1);
       return 0;
-    }
-    
+    } 
   }
-  if(argc != 5) //5 = program + 4 argumen lain
-  {
-    printf("salah woi kurang lol\n");
-    return 0;
-  }
-  #pragma endregion
-
   
   
 
