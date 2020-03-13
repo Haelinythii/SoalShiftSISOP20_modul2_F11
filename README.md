@@ -96,8 +96,6 @@ Program hanya menerima 1 config cron
 
 **Jawaban :**
 
-Program diatas hanya bisa menerima 1 config, selain itu akan ditampilkan error dan program akan berhenti berjalan
-
 ### 1.d
 **Soal :**
 
@@ -188,7 +186,7 @@ while (1) {
 ```
 Potongan diatas adalah program yang akan dilooping. Pertama, program akan mendapatkan local time dari header time.h. Kemudian waktu2 itu akan dimasukkan kedalam variable string. Lalu akan dilakukan pengecekan, jika waktu yang diberikan oleh argumen dan waktu sekarang sama, atau argumen berupa "*", maka boolean akan diset menjadi true. Program bash hanya akan berjalan jika ke tiga boolean tersebut bernilai true. Jika semua boolean = true, maka program akan melakukan fork untuk spawn child yang kemudian mengeksekusi program bash dari argumen.
 
-### 1.e
+### 1.d
 **Soal :**
 
 ```
@@ -204,7 +202,9 @@ Program diatas tidak menggunakan fungsi system(), hanya melakukan execv().
 ### 2.a
 **Soal :**
 ```
-Pertama-tama, Kiwa membuat sebuah folder khusus, di dalamnya dia membuat sebuah program C yang per 30 detik membuat sebuah folder dengan nama timestamp [YYYY-mm-dd_HH:ii:ss].
+Pertama-tama, Kiwa membuat sebuah folder khusus, di dalamnya dia membuat
+sebuah program C yang per 30 detik membuat sebuah folder dengan nama
+timestamp [YYYY-mm-dd_HH:ii:ss].
 ```
 **Jawaban :**
 ```c
@@ -237,7 +237,11 @@ Dilakukan sebuah fork sebagai perintah utama. Perintah utama melakukan fork lagi
 ### 2.b
 **Soal :**
 ```
-Tiap-tiap folder lalu diisi dengan 20 gambar yang di download dari https://picsum.photos/, dimana tiap gambar di download setiap 5 detik. Tiap gambar berbentuk persegi dengan ukuran (t%1000)+100 piksel dimana t adalah detik Epoch Unix. Gambar tersebut diberi nama dengan format timestamp [YYYY-mm-dd_HH:ii:ss].
+Tiap-tiap folder lalu diisi dengan 20 gambar yang di download dari
+https://picsum.photos/, dimana tiap gambar di download setiap 5 detik. Tiap
+gambar berbentuk persegi dengan ukuran (t%1000)+100 piksel dimana t adalah
+detik Epoch Unix. Gambar tersebut diberi nama dengan format timestamp [YYYY-
+mm-dd_HH:ii:ss].
 ```
 **Jawaban :**
 ```c
@@ -266,7 +270,8 @@ Parent dari perintah membuat folder kemudian akan mendownload 20 gambar dengan n
 ### 2.c
 **Soal :**
 ```
-Agar rapi, setelah sebuah folder telah terisi oleh 20 gambar, folder akan di zip dan folder akan di delete(sehingga hanya menyisakan .zip).
+Agar rapi, setelah sebuah folder telah terisi oleh 20 gambar, folder akan di zip dan
+folder akan di delete(sehingga hanya menyisakan .zip).
 ```
 **Jawaban :**
 ```c
@@ -290,7 +295,18 @@ Setelah mendownload 20 folder, proses selanjutnya mengubah folder menjadi zip da
 ### 2.d & e
 **Soal :**
 ```
-Karena takut program tersebut lepas kendali, Kiwa ingin program tersebut men-generate sebuah program "killer" yang siap di run(executable) untuk menterminasi semua operasi program tersebut. Setelah di run, program yang menterminasi ini lalu akan mendelete dirinya sendiri. Kiwa menambahkan bahwa program utama bisa dirun dalam dua mode, yaitu MODE_A dan MODE_B. untuk mengaktifkan MODE_A, program harus dijalankan dengan argumen -a. Untuk MODE_B, program harus dijalankan dengan argumen -b. Ketika dijalankan dalam MODE_A, program utama akan langsung menghentikan semua operasinya ketika program killer dijalankan. Untuk MODE_B, ketika program killer dijalankan, program utama akan berhenti tapi membiarkan proses di setiap folder yang masih berjalan sampai selesai(semua folder terisi gambar, terzip lalu di delete).
+Karena takut program tersebut lepas kendali, Kiwa ingin program tersebut men-
+generate sebuah program "killer" yang siap di run(executable) untuk
+menterminasi semua operasi program tersebut. Setelah di run, program yang
+menterminasi ini lalu akan mendelete dirinya sendiri.
+Kiwa menambahkan bahwa program utama bisa dirun dalam dua mode, yaitu
+MODE_A dan MODE_B. untuk mengaktifkan MODE_A, program harus dijalankan
+dengan argumen -a. Untuk MODE_B, program harus dijalankan dengan argumen
+-b. Ketika dijalankan dalam MODE_A, program utama akan langsung
+menghentikan semua operasinya ketika program killer dijalankan. Untuk
+MODE_B, ketika program killer dijalankan, program utama akan berhenti tapi
+membiarkan proses di setiap folder yang masih berjalan sampai selesai(semua
+folder terisi gambar, terzip lalu di delete).
 ```
 **Jawaban :**
 ```c
@@ -345,7 +361,9 @@ Program utama dapat dijalankan dengan argumen -a dan -b. Program kemudian genera
 ### 3.a
 **Soal :**
 ```
-Program buatan jaya harus bisa membuat dua direktori di “/home/[USER]/modul2/”. Direktori yang pertama diberi nama “indomie”, lalu lima detik kemudian membuat direktori yang kedua bernama “sedaap”.
+Program buatan jaya harus bisa membuat dua direktori di
+“/home/[USER]/modul2/”. Direktori yang pertama diberi nama “indomie”, lalu
+lima detik kemudian membuat direktori yang kedua bernama “sedaap”.
 ```
 **Jawaban :**
 ```c
@@ -371,7 +389,9 @@ Potongan program diatas, setelah melakukan spawn child, dia menyuruh child terse
 **Soal :**
 
 ```
-Kemudian program tersebut harus meng-ekstrak file jpg.zip di direktori “/home/[USER]/modul2/”. Setelah tugas sebelumnya selesai, ternyata tidak hanya itu tugasnya.
+Kemudian program tersebut harus meng-ekstrak file jpg.zip di direktori
+“/home/[USER]/modul2/”. Setelah tugas sebelumnya selesai, ternyata tidak
+hanya itu tugasnya.
 ```
 
 **Jawaban :**
@@ -388,7 +408,11 @@ Kemudian program akan melakukan fork() lagi untuk spawn child lagi, yang melakuk
 **Soal :**
 
 ```
-Diberilah tugas baru yaitu setelah di ekstrak, hasil dari ekstrakan tersebut (di dalam direktori “home/[USER]/modul2/jpg/”) harus dipindahkan sesuai dengan pengelompokan, semua file harus dipindahkan ke “/home/[USER]/modul2/sedaap/” dan semua direktori harus dipindahkan ke “/home/[USER]/modul2/indomie/”.
+Diberilah tugas baru yaitu setelah di ekstrak, hasil dari ekstrakan tersebut (di
+dalam direktori “home/[USER]/modul2/jpg/”) harus dipindahkan sesuai dengan
+pengelompokan, semua file harus dipindahkan ke
+“/home/[USER]/modul2/sedaap/” dan semua direktori harus dipindahkan ke
+“/home/[USER]/modul2/indomie/”.
 ```
 
 **Jawaban :**
@@ -416,7 +440,10 @@ Selanjutnya, Program akan melakukan fork lagi untuk men-spawn child lagi, yang d
 **Soal :**
 
 ```
-Untuk setiap direktori yang dipindahkan ke “/home/[USER]/modul2/indomie/” harus membuat dua file kosong. File yang pertama diberi nama “coba1.txt”, lalu 3 detik kemudian membuat file bernama “coba2.txt”. (contoh : “/home/[USER]/modul2/indomie/{nama_folder}/coba1.txt”).
+Untuk setiap direktori yang dipindahkan ke “/home/[USER]/modul2/indomie/”
+harus membuat dua file kosong. File yang pertama diberi nama “coba1.txt”, lalu
+3 detik kemudian membuat file bernama “coba2.txt”.
+(contoh : “/home/[USER]/modul2/indomie/{nama_folder}/coba1.txt”).
 ```
 
 **Jawaban :**
