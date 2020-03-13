@@ -196,3 +196,112 @@ Tidak boleh menggunakan fungsi system()
 **Jawaban :**
 
 Program diatas tidak menggunakan fungsi system(), hanya melakukan execv().
+
+## Soal 3
+### 3.a
+**Soal :**
+```
+Program buatan jaya harus bisa membuat dua direktori di
+“/home/[USER]/modul2/”. Direktori yang pertama diberi nama “indomie”, lalu
+lima detik kemudian membuat direktori yang kedua bernama “sedaap”.
+```
+**Jawaban :**
+```c
+if (child_id == 0) {
+    // this is child
+    char *argv[] = {"mkdir", "-p", "/home/dwiki/modul2/indomie", NULL};
+    execv("/bin/mkdir", argv);
+  } else {
+    // this is parent
+    while ((wait(&status)) > 0);
+    sleep(5);
+    if(fork()==0)
+    {
+      char *argv[] = {"mkdir", "-p", "/home/dwiki/modul2/sedaap", NULL};
+      execv("/bin/mkdir", argv);
+    }
+```
+**Penjelasan :**
+
+Potongan program diatas, setelah melakukan spawn child, dia menyuruh child tersebut untuk membuat directory "indomie" sedangkan parentnya akan menunggu child jalan, dan kemudian menunggu 5 detik. Kemudian akan spawn child lagi, yang akan melakukan pembuatan directory "sedaap".
+
+### 3.b
+**Soal :**
+
+```
+Kemudian program tersebut harus meng-ekstrak file jpg.zip di direktori
+“/home/[USER]/modul2/”. Setelah tugas sebelumnya selesai, ternyata tidak
+hanya itu tugasnya.
+```
+
+**Jawaban :**
+```c
+if(fork()==0)
+{
+  char *argv[] = {"unzip", "/home/dwiki/modul2/jpg.zip", NULL};
+  execv("/usr/bin/unzip", argv);
+}
+```
+Kemudian program akan melakukan fork() lagi untuk spawn child lagi, yang melakukan unzip "jpg.zip" menggunakan command unzip dari usr/bin/unzip
+
+### 3.c
+**Soal :**
+
+```
+Diberilah tugas baru yaitu setelah di ekstrak, hasil dari ekstrakan tersebut (di
+dalam direktori “home/[USER]/modul2/jpg/”) harus dipindahkan sesuai dengan
+pengelompokan, semua file harus dipindahkan ke
+“/home/[USER]/modul2/sedaap/” dan semua direktori harus dipindahkan ke
+“/home/[USER]/modul2/indomie/”.
+```
+
+**Jawaban :**
+```c
+    else
+    {
+      while ((wait(&status)) > 0);
+      if(fork()==0)
+      {
+        char *argv[] = {"find", "/home/dwiki/modul2/jpg/.", "-maxdepth", "1", "-type", "d", "-exec", "mv", "{}", "/home/dwiki/modul2/indomie", ";", NULL};
+        execv("/usr/bin/find", argv);
+      }
+      else
+      {
+        while ((wait(&status)) > 0);
+        if(fork()==0)
+        {
+          char *argv[] = {"find", "/home/dwiki/modul2/jpg/.", "-maxdepth", "1", "-type", "f", "-exec", "mv", "{}", "/home/dwiki/modul2/sedaap", ";", NULL};
+          execv("/usr/bin/find", argv);
+        }
+```
+Selanjutnya, Program akan melakukan fork lagi untuk men-spawn child lagi, yang digunakan untuk eksekusi memindahkan semua direktori di dalam folder jpg ke folder indomie, menggunakan command find. Argumen find disini ada direktori asal, maxdepth (kedalaman folder), type(tipe file/direktori), exec (eksekusi command) , mv(memindahkan file/direktori), dan ";" sebagai penutup. Begitu juga dengan memindahkan semua file ke dalam direktori sedaap, cara pengeksekusian programnya juga sama. Tetapi akan menunggu child sebelumnya mengeksekusi dahulu sebelum membuat child lagi.
+
+### 3.d
+**Soal :**
+
+```
+Untuk setiap direktori yang dipindahkan ke “/home/[USER]/modul2/indomie/”
+harus membuat dua file kosong. File yang pertama diberi nama “coba1.txt”, lalu
+3 detik kemudian membuat file bernama “coba2.txt”.
+(contoh : “/home/[USER]/modul2/indomie/{nama_folder}/coba1.txt”).
+```
+
+**Jawaban :**
+```c
+    else
+        {
+          if(fork()==0)
+          {
+            char *argv[] = {"find", "/home/dwiki/modul2/indomie/.", "-mindepth", "1", "-type", "d", "-exec", "touch", "{}/coba1.txt", ";", NULL};
+            execv("/usr/bin/find", argv);
+          }
+          else
+          {
+            while ((wait(&status)) > 0);
+            sleep(3);
+            char *argv[] = {"find", "/home/dwiki/modul2/indomie/.", "-mindepth", "1", "-type", "d", "-exec", "touch", "{}/coba2.txt", ";", NULL};
+            execv("/usr/bin/find", argv);
+          }
+          
+        }
+```
