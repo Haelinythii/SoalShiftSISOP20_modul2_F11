@@ -197,6 +197,166 @@ Tidak boleh menggunakan fungsi system()
 
 Program diatas tidak menggunakan fungsi system(), hanya melakukan execv().
 
+## Soal 2
+
+### 2.a
+**Soal :**
+```
+Pertama-tama, Kiwa membuat sebuah folder khusus, di dalamnya dia membuat
+sebuah program C yang per 30 detik membuat sebuah folder dengan nama
+timestamp [YYYY-mm-dd_HH:ii:ss].
+```
+**Jawaban :**
+```c
+while(1){
+    pid_t child_id1;
+    int status1;
+    
+    child_id1 = fork();
+
+    char namaFolder[1000];
+    snprintf(namaFolder, 1000, "./");
+    getTimestamp(namaFolder);
+
+    if(child_id1 == 0){
+      pid_t child_id2;
+      int status2;
+      
+      child_id2 = fork();
+
+      if(child_id2 == 0){
+        char *argv[] = {"mkdir", namaFolder, NULL};
+        execv("/bin/mkdir", argv);
+      }
+    sleep(30);
+  }
+
+```
+Dilakukan sebuah fork sebagai perintah utama. Perintah utama melakukan fork lagi untuk menggunakan execv memerintahkan sistem membuat direktori baru dengan timestamp waktu sekarang. Perintah utama dipanggil setiap 30 detik.
+
+### 2.b
+**Soal :**
+```
+Tiap-tiap folder lalu diisi dengan 20 gambar yang di download dari
+https://picsum.photos/, dimana tiap gambar di download setiap 5 detik. Tiap
+gambar berbentuk persegi dengan ukuran (t%1000)+100 piksel dimana t adalah
+detik Epoch Unix. Gambar tersebut diberi nama dengan format timestamp [YYYY-
+mm-dd_HH:ii:ss].
+```
+**Jawaban :**
+```c
+else {
+        while((wait(&status2)) > 0);
+        pid_t child_id3;
+        int status3, i;
+        char curFolder[1000]; strcpy(curFolder, namaFolder);
+        char namaFile[1000];
+        char linkDownload[1000];
+
+        for(i=0; i<20; i++){
+          strcpy(namaFile, curFolder); strcat(namaFile, "/");
+          getTimestamp(namaFile);
+          long int sec = time(NULL)%1000 + 100;
+          snprintf(linkDownload, 1000, "https://picsum.photos/%ld", sec);
+          child_id3 = fork();
+          if(child_id3 == 0){
+            char *argv[] = {"wget", "-O", namaFile, linkDownload, NULL};
+            execv("/usr/bin/wget", argv);
+        }
+          sleep(5);
+```
+Parent dari perintah membuat folder kemudian akan mendownload 20 gambar dengan nama sesuai timestamp dan ukuran sesuai nilai (Epoch Unix%1000 + 100). Perintah berjalan tiap 5 detik.
+
+### 2.c
+**Soal :**
+```
+Agar rapi, setelah sebuah folder telah terisi oleh 20 gambar, folder akan di zip dan
+folder akan di delete(sehingga hanya menyisakan .zip).
+```
+**Jawaban :**
+```c
+pid_t child_id4;
+        int status4;
+
+        child_id4 = fork();
+
+        if(child_id4 == 0){
+          char outputZip[1000];
+          snprintf(outputZip, 1000, "%s.zip", curFolder);
+          char *argv[] = {"zip", "-r", outputZip, curFolder, NULL};
+          execv("/usr/bin/zip", argv);
+        } else {
+          while((wait(&status4)) > 0);
+          char *argv[] = {"rm", "-r", curFolder, NULL};
+          execv("/bin/rm", argv);
+        }
+```
+Setelah mendownload 20 folder, proses selanjutnya mengubah folder menjadi zip dan folder lama dihapus.
+### 2.d & e
+**Soal :**
+```
+Karena takut program tersebut lepas kendali, Kiwa ingin program tersebut men-
+generate sebuah program "killer" yang siap di run(executable) untuk
+menterminasi semua operasi program tersebut. Setelah di run, program yang
+menterminasi ini lalu akan mendelete dirinya sendiri.
+Kiwa menambahkan bahwa program utama bisa dirun dalam dua mode, yaitu
+MODE_A dan MODE_B. untuk mengaktifkan MODE_A, program harus dijalankan
+dengan argumen -a. Untuk MODE_B, program harus dijalankan dengan argumen
+-b. Ketika dijalankan dalam MODE_A, program utama akan langsung
+menghentikan semua operasinya ketika program killer dijalankan. Untuk
+MODE_B, ketika program killer dijalankan, program utama akan berhenti tapi
+membiarkan proses di setiap folder yang masih berjalan sampai selesai(semua
+folder terisi gambar, terzip lalu di delete).
+```
+**Jawaban :**
+```c
+void writeKillerA()
+{
+  FILE *temp;
+  temp = fopen("killer.sh", "w");
+  fputs("#!/bin/bash\n", temp);
+  fputs("killOrder=$(echo $(pidof soal2))\n", temp);
+  fputs("kill -9 $killOrder\n", temp);
+  fputs("rm $0\n", temp);
+  fclose(temp);
+
+  pid_t tempChild_id;
+  int tempStatus;
+  tempChild_id = fork();
+
+  if(tempChild_id == 0){
+    char *argv[]={"chmod", "+x", "killer.sh", NULL};
+    execv("/bin/chmod", argv);
+  } else {
+
+  }
+}
+
+void writeKillerB()
+{
+  FILE *temp;
+  temp = fopen("killer.sh", "w");
+  fputs("#!/bin/bash\n", temp);
+  fputs("killOrder=$(echo $(pidof soal2))\n", temp);
+  fputs("killOrder=${killOrder##* }\n", temp);
+  fputs("kill -9 $killOrder\n", temp);
+  fputs("rm $0\n", temp);
+  fclose(temp);
+
+  pid_t tempChild_id;
+  int tempStatus;
+  tempChild_id = fork();
+
+  if(tempChild_id == 0){
+    char *argv[]={"chmod", "+x", "killer.sh", NULL};
+    execv("/bin/chmod", argv);
+  } else {
+
+  }
+}
+```
+Program utama dapat dijalankan dengan argumen -a dan -b. Program kemudian generate sebuah program killer yang siap untuk dijalankan. Ketika dijalankan, program killer akan mengehntikan proses program utama dan menghapus dirinya sendiri. Mode -a, killer akan menghentikan semua proses dari program utama. Mode -b, killer akan menghentikan proses utama dan membiarkan proses lain bekerja sampai tugasnya selesai.
+
 ## Soal 3
 ### 3.a
 **Soal :**
