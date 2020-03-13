@@ -94,7 +94,8 @@ int main(int argc, char **argb){
           }
           sleep(5);
         }
-
+	      
+        while((wait(&status3)) > 0);
         pid_t child_id4;
         int status4;
 
@@ -133,34 +134,34 @@ void getTimestamp(char *path)
   strcat(path, timeStr);
 
   if ((loctime->tm_mon+1) < 10)
-		snprintf(timeStr, 10, "0%d-", loctime->tm_mon+1);
-	else
-		snprintf(timeStr, 10, "%d-", loctime->tm_mon+1);
-	strcat(path, timeStr);
+    snprintf(timeStr, 10, "0%d-", loctime->tm_mon+1);
+  else
+    snprintf(timeStr, 10, "%d-", loctime->tm_mon+1);
+  strcat(path, timeStr);
+
+  if (loctime->tm_mday < 10)
+    snprintf(timeStr, 10, "0%d_", loctime->tm_mday);
+  else
+    snprintf(timeStr, 10, "%d_", loctime->tm_mday);
+  strcat(path, timeStr);
 	
-	if (loctime->tm_mday < 10)
-		snprintf(timeStr, 10, "0%d_", loctime->tm_mday);
-	else
-		snprintf(timeStr, 10, "%d_", loctime->tm_mday);
-	strcat(path, timeStr);
+  if (loctime->tm_hour < 10)
+    snprintf(timeStr, 10, "0%d:", loctime->tm_hour);
+  else
+    snprintf(timeStr, 10, "%d:", loctime->tm_hour);
+  strcat(path, timeStr);
 	
-	if (loctime->tm_hour < 10)
-		snprintf(timeStr, 10, "0%d:", loctime->tm_hour);
-	else
-		snprintf(timeStr, 10, "%d:", loctime->tm_hour);
-	strcat(path, timeStr);
+  if (loctime->tm_min < 10)
+    snprintf(timeStr, 10, "0%d:", loctime->tm_min);
+  else
+    snprintf(timeStr, 10, "%d:", loctime->tm_min);
+  strcat(path, timeStr);
 	
-	if (loctime->tm_min < 10)
-		snprintf(timeStr, 10, "0%d:", loctime->tm_min);
-	else
-		snprintf(timeStr, 10, "%d:", loctime->tm_min);
-	strcat(path, timeStr);
-	
-	if (loctime->tm_sec < 10)
-		snprintf(timeStr, 10, "0%d", loctime->tm_sec);
-	else
-		snprintf(timeStr, 10, "%d", loctime->tm_sec);
-	strcat(path, timeStr);
+  if (loctime->tm_sec < 10)
+    snprintf(timeStr, 10, "0%d", loctime->tm_sec);
+  else
+    snprintf(timeStr, 10, "%d", loctime->tm_sec);
+  strcat(path, timeStr);
 }
 
 void writeKillerA()
