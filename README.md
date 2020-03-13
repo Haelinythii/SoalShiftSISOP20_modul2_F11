@@ -96,6 +96,8 @@ Program hanya menerima 1 config cron
 
 **Jawaban :**
 
+Program diatas hanya bisa menerima 1 config, selain itu akan ditampilkan error dan program akan berhenti berjalan
+
 ### 1.d
 **Soal :**
 
@@ -186,7 +188,7 @@ while (1) {
 ```
 Potongan diatas adalah program yang akan dilooping. Pertama, program akan mendapatkan local time dari header time.h. Kemudian waktu2 itu akan dimasukkan kedalam variable string. Lalu akan dilakukan pengecekan, jika waktu yang diberikan oleh argumen dan waktu sekarang sama, atau argumen berupa "*", maka boolean akan diset menjadi true. Program bash hanya akan berjalan jika ke tiga boolean tersebut bernilai true. Jika semua boolean = true, maka program akan melakukan fork untuk spawn child yang kemudian mengeksekusi program bash dari argumen.
 
-### 1.d
+### 1.e
 **Soal :**
 
 ```
