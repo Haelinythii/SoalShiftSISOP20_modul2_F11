@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
     printf("salah woi kurang lol\n");
     return 0;
   }
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < 3; i++) //check jam
   {
     //check alpha?
     for (int j = 0; j < strlen(argv[i+1]); j++)
@@ -48,6 +48,15 @@ int main(int argc, char** argv) {
       return 0;
     } 
   }
+  FILE *f;
+  f = fopen(argv[4],"r+");
+  if(f == NULL) //kalau null berarti belum ada file
+  {
+    printf("file tidak ada\n");
+    return 0;
+  }
+  fclose(f);
+  
   
   
 
