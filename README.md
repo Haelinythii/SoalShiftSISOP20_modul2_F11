@@ -274,7 +274,7 @@ pengelompokan, semua file harus dipindahkan ke
           execv("/usr/bin/find", argv);
         }
 ```
-Selanjutnya, Program akan melakukan fork lagi untuk men-spawn child lagi, yang digunakan untuk eksekusi memindahkan semua direktori di dalam folder jpg ke folder indomie, menggunakan command find. Argumen find disini ada direktori asal, maxdepth (kedalaman folder), type(tipe file/direktori), exec (eksekusi command) , mv(memindahkan file/direktori), dan ";" sebagai penutup. Begitu juga dengan memindahkan semua file ke dalam direktori sedaap, cara pengeksekusian programnya juga sama. Tetapi akan menunggu child sebelumnya mengeksekusi dahulu sebelum membuat child lagi.
+Selanjutnya, Program akan melakukan fork lagi untuk men-spawn child lagi, yang digunakan untuk eksekusi memindahkan semua direktori di dalam folder jpg ke folder indomie, menggunakan command find. Argumen find disini ada direktori asal, maxdepth 1(kedalaman folder, 1 berarti hanya melakukan pencarian sampai kedalaman pertama), type d(tipe file/direktori, d = direktori , f = file), exec (eksekusi command) , mv(memindahkan file/direktori), {} (file/direktori yang di find), /home/dwiki/modul2/sedaap (direktori tujuan move), dan ";" sebagai penutup. Begitu juga dengan memindahkan semua file ke dalam direktori sedaap, cara pengeksekusian programnya juga sama. Tetapi akan menunggu child sebelumnya mengeksekusi dahulu sebelum membuat child lagi.
 
 ### 3.d
 **Soal :**
@@ -305,3 +305,5 @@ harus membuat dua file kosong. File yang pertama diberi nama “coba1.txt”, la
           
         }
 ```
+
+Selanjutnya, Program akan melakukan fork lagi untuk men-spawn child lagi, yang digunakan untuk eksekusi membuat file kosong di dalam direktori yang dipindahkan sebelumnya ke folder indomie, menggunakan command find juga. Argumen find disini ada direktori asal, mindepth 1(kedalaman minimal folder, artinya hanya melakukan pencarian dari kedalaman pertama, artinya direktori yang ditunjuk / parent tidak termasuk), type d(tipe file/direktori, d = direktori , f = file), exec (eksekusi command) , touch(membuat file), {}/coba1.txt (path dan nama file yang akan dibuat), dan ";" sebagai penutup. Begitu juga dengan membuat file kosong ke dalam semua direktori yang ada di sedaap, cara pengeksekusian programnya juga sama. Tetapi akan menunggu child sebelumnya mengeksekusi dahulu sebelum membuat child lagi.
