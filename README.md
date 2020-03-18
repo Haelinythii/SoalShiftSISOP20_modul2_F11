@@ -477,6 +477,33 @@ Selanjutnya, Program akan melakukan fork lagi untuk men-spawn child lagi, yang d
 1. compile soal1.c, dengan gcc soal1.c -o soal1
 2. run program dengan ./soal1 {arg1} {arg2} {arg3} {arg4}. Contoh: ./soal1 \* \* \* /home/dwiki/prak2/realPrak2/test.sh
 
+Penjalanan argumen yang benar akan mengeluarkan berikut:
+
+<img src="screenshot/soal1/u1.png">
+
+Jika salah input akan memberitahu salah dimana:
+
+<img src="screenshot/soal1/u2.png">
+
+Jika argumen kurang:
+
+<img src="screenshot/soal1/u3.png">
+
+Jika memasukkan lebih dari 1 config cron:
+
+<img src="screenshot/soal1/u4.png">
+
+Jika memasukkann file yang tidak ada:
+
+<img src="screenshot/soal1/u8.png">
+
+awal program sebelum dieksekusi:
+
+<img src="screenshot/soal1/u5.png" width="500">
+
+Karena test.sh berisi touch a.txt maka akan membuat file a.txt di direktori yang sama:
+
+<img src="screenshot/soal1/u6.png" width="500">
 
 ### nomor 2
 1. compile: gcc soal2.c -o soal2
@@ -489,3 +516,26 @@ Program killer akan di-generate program utama. Untuk menjalankan program killer,
 2. download jpg.zip dan soal3.c, letakkan di /home/{username}/modul2
 3. compile soal3.c, dengan gcc soal3.c -o soal3
 4. run program dengan ./soal3
+
+Sewaktu program belum dijalankan:
+
+<img src="screenshot/soal3/u1.png" width="500">
+
+Setelah program dijalankan maka akan membuat direktori indomie:
+<img src="screenshot/soal3/u2.png" width="500">
+
+Setelah 5 detik akan membuat direktori sedaap dan melakukan unzip jpg.zip:
+<img src="screenshot/soal3/u3.png" width="500">
+
+Kemudian semua direktori dipindah ke direktori indomie:
+<img src="screenshot/soal3/u4.png" width="500">
+
+Dan semua file dipindah ke direktori sedaap:
+
+<img src="screenshot/soal3/u5.png" width="500">
+
+Kemudian program akan membuat file coba1.txt disemua direktori di indomie:
+<img src="screenshot/soal3/u6.png" width="500">
+
+3 detik kemudian membuat file coba2.txt disemua direktori di indomie:
+<img src="screenshot/soal3/u7.png" width="500">
