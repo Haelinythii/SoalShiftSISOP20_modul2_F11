@@ -508,12 +508,50 @@ Karena test.sh berisi touch a.txt maka akan membuat file a.txt di direktori yang
 ### nomor 2
 1. Compile: gcc soal2.c -o soal2
 2. Run dengan perintah ./soal2 lengkap dengan argumen -a atau -b.
+3. Program killer dijalankan dengan perintah bash killer.sh. Perilaku program killer tergantung argumen program utama.
 
-## ./soal2 -a
+#### ./soal2 -a
+Dijalankan dengan perintah: ./soal2 -a
+<img src="screenshot/soal2/RunA.png">
 
-Ketika dijalankan, akan dibuat folder baru dan sebuah file bash killer.
+Ketika dijalankan, folder baru akan dibuat dan sebuah file bash killer akan di-generate.
+<img src="screenshot/soal2/HasilRunA1.png">
+<img src="screenshot/soal2/HasilRunA2.png">
 
-Program killer dijalankan dengan perintah bash killer.sh. Perilaku program killer tergantung argumen program utama.
+Untuk menjalankan program killer, tuliskan perintah pada terminal: bash killer.sh
+<img src="screenshot/soal2/Killer.png">
+
+Killer pada argumen -a akan menghentikan semua proses ./soal2 yang sedang berjalan.
+
+Sebelum killer dijalankan:
+<img src="screenshot/soal2/HasilRunA3.png">
+
+Setelah killer dijalankan:
+<img src="screenshot/soal2/HasilRunA4.png">
+<img src="screenshot/soal2/HasilRunA5.png">
+<img src="screenshot/soal2/HasilRunA6.png">
+
+#### ./soal2 -b
+Dijalankan dengan perintah: ./soal2 -b
+<img src="screenshot/soal2/RunB.png">
+
+Ketika dijalankan, folder baru akan dibuat dan sebuah file bash killer akan di-generate.
+<img src="screenshot/soal2/HasilRunB1.png">
+<img src="screenshot/soal2/HasilRunB2.png">
+
+Untuk menjalankan program killer, tuliskan perintah pada terminal: bash killer.sh
+<img src="screenshot/soal2/Killer.png">
+
+Killer pada argumen -b hanya akan menghentikan proses ./soal2, sehingga tidak akan ada lagi folder baru yang dibuat dan folder yang tersisa akan tetap diisi 20 gambar, dibuat zip, dan dihapus folder lama.
+
+Sebelum killer dijalankan:
+<img src="screenshot/soal2/HasilRunB3.png">
+
+Setelah killer dijalankan:
+<img src="screenshot/soal2/HasilRunB4.png">
+<img src="screenshot/soal2/HasilRunB5.png">
+<img src="screenshot/soal2/HasilRunB6.png">
+<img src="screenshot/soal2/HasilRunB7.png">
 
 ### nomor 3
 1. Buat direktori modul2 di /home/{username}/
