@@ -506,10 +506,14 @@ Karena test.sh berisi touch a.txt maka akan membuat file a.txt di direktori yang
 <img src="screenshot/soal1/u6.png" width="500">
 
 ### nomor 2
-1. compile: gcc soal2.c -o soal2
-2. di run dengan perintah ./soal2 dengan argumen -a atau -b. Contoh: ./soal 2 -a
+1. Compile: gcc soal2.c -o soal2
+2. Run dengan perintah ./soal2 lengkap dengan argumen -a atau -b.
 
-Program killer akan di-generate program utama. Untuk menjalankan program killer, perintah yang digunakan adalah bash killer.sh
+## ./soal2 -a
+
+Ketika dijalankan, akan dibuat folder baru dan sebuah file bash killer.
+
+Program killer dijalankan dengan perintah bash killer.sh. Perilaku program killer tergantung argumen program utama.
 
 ### nomor 3
 1. Buat direktori modul2 di /home/{username}/
