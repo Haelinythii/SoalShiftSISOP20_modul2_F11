@@ -469,3 +469,23 @@ harus membuat dua file kosong. File yang pertama diberi nama “coba1.txt”, la
 ```
 
 Selanjutnya, Program akan melakukan fork lagi untuk men-spawn child lagi, yang digunakan untuk eksekusi membuat file kosong di dalam direktori yang dipindahkan sebelumnya ke folder indomie, menggunakan command find juga. Argumen find disini ada direktori asal, mindepth 1(kedalaman minimal folder, artinya hanya melakukan pencarian dari kedalaman pertama, artinya direktori yang ditunjuk / parent tidak termasuk), type d(tipe file/direktori, d = direktori , f = file), exec (eksekusi command) , touch(membuat file), {}/coba1.txt (path dan nama file yang akan dibuat), dan ";" sebagai penutup. Begitu juga dengan membuat file kosong ke dalam semua direktori yang ada di sedaap, cara pengeksekusian programnya juga sama. Tetapi akan menunggu child sebelumnya mengeksekusi dahulu sebelum membuat child lagi.
+
+## Cara Run dan Screenshot
+
+### nomor 1
+
+1. compile soal1.c, dengan gcc soal1.c -o soal1
+2. run program dengan ./soal1 {arg1} {arg2} {arg3} {arg4}. Contoh: ./soal1 \* \* \* /home/dwiki/prak2/realPrak2/test.sh
+
+
+### nomor 2
+1. compile: gcc soal2.c -o soal2
+2. di run dengan perintah ./soal2 dengan argumen -a atau -b. Contoh: ./soal 2 -a
+
+Program killer akan di-generate program utama. Untuk menjalankan program killer, perintah yang digunakan adalah bash killer.sh
+
+### nomor 3
+1. Buat direktori modul2 di /home/{username}/
+2. download jpg.zip dan soal3.c, letakkan di /home/{username}/modul2
+3. compile soal3.c, dengan gcc soal3.c -o soal3
+4. run program dengan ./soal3
